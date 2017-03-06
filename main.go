@@ -51,6 +51,7 @@ func add(x int, y int) int {
 }
 
 /*
+https://tour.golang.org/flowcontrol/9
 Based on the operator variable (+, -, *, /) return the calculated value.
 */
 func calculate(x int, operator string, y int) {
