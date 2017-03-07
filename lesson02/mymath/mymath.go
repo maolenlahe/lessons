@@ -28,6 +28,14 @@ func Calculate(x int, operator string, y int) (int, error) {
 }
 
 // @todo Modify this function to accept another parameter "mean", "median" or "mode" * Write your tests first
+// @hint len(args) returns the count of elements in args
+// @hint for index, value := range args {
+//    <code here>
+// } // loops each argument
+// @hint switch averageType {
+//	case "mean":
+//		<code>
+// }
 func Average(args ...int) int {
 	sort.Ints(args)
 	var sum int = 0
