@@ -9,25 +9,23 @@ import (
 )
 
 func init() {
-	fmt.Println("Init ran")
+	fmt.Println("Calculator 1.0")
 }
 
 func main() {
-	var x int = 27
-	var s string
-	s = strconv.Itoa(x)
-	ss := "hi"
-	fmt.Println("Hello,"+s, "World!", x, ss)
-
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Print("Enter numbers to add: ")
 	snum1, _ := reader.ReadString('\n')
+	operator, _ := reader.ReadString('\n')
 	snum2, _ := reader.ReadString('\n')
+
 	num1, err1 := strconv.Atoi(strings.Trim(snum1, "\n"))
 	if err1 != nil {
 		fmt.Println(err1.Error())
 		panic(err1)
 	}
+
+	operator = strings.Trim(operator, "\n")
 
 	num2, err2 := strconv.Atoi(strings.Trim(snum2, "\n"))
 	if err2 != nil {
@@ -35,25 +33,27 @@ func main() {
 		panic(err2)
 	}
 
-	sum := add(num1, num2)
-	fmt.Print(sum)
-
-	//if text == "hi" {
-	//	fmt.Println(text)
-	//} else {
-	//	fmt.Println("wrong")
-	//}
-
-}
-
-func add(x int, y int) int {
-	return x + y
+	result := calculate(num1, operator, num2)
+	fmt.Print(result)
 }
 
 /*
 https://tour.golang.org/flowcontrol/9
 Based on the operator variable (+, -, *, /) return the calculated value.
 */
-func calculate(x int, operator string, y int) {
+func calculate(x int, operator string, y int) int {
+	switch operator {
+	case "+":
+		return x + y
+	case "-":
+		return x - y
+	case "*":
+		return x * y
+	case "/":
+		return x / y
+	case "%":
+		return x % y
+	}
 
+	return 0
 }
