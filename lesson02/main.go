@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"github.com/maolenlahe/lessons/lesson02/mymath"
 	"os"
 	"strconv"
 	"strings"
@@ -33,27 +34,14 @@ func main() {
 		panic(err2)
 	}
 
-	result := calculate(num1, operator, num2)
-	fmt.Print(result)
-}
-
-/*
-https://tour.golang.org/flowcontrol/9
-Based on the operator variable (+, -, *, /) return the calculated value.
-*/
-func calculate(x int, operator string, y int) int {
-	switch operator {
-	case "+":
-		return x + y
-	case "-":
-		return x - y
-	case "*":
-		return x * y
-	case "/":
-		return x / y
-	case "%":
-		return x % y
+	result, err := mymath.Calculate(num1, operator, num2)
+	if err != nil {
+		fmt.Println(err.Error())
+	} else {
+		fmt.Println(result)
 	}
 
-	return 0
+	arr := []int{1, 2, 3, 4}
+	avg := mymath.Average(arr...)
+	fmt.Println(avg)
 }
